@@ -63,7 +63,6 @@ class WordCounter
         return $count;
     }
 }
-
 $wordCount = new WordCounter();
 echo "<b>Top 20 Words: </b>". "<pre>";
 var_dump($wordCount->getTop($wordCount->display($Count)));

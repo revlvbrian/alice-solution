@@ -1,50 +1,39 @@
 <?php
-$csv = file_get_contents('todo.csv');
+$content = file_get_contents('todo.csv');
 
-class CsvTable
+class Csv
 {
-    public function csvContent($csv)
+    public function table($content)
     {
-        $byLine = explode("\n", $csv);
+        $csvContent = explode("\n", $content);
 
-        $table = [];
-
-        foreach ($byLine as $line)
-        {
-            $byWords = explode(',', $line);
-
-            list($id, $title, $description) = $byWords;
-
-            $table[] = [
-                'id' => $id,
-                'title' => $title,
-                'description' => $description
-            ];
-        }
+        return $csvContent;
     }
-
-    function rowPrinter($rows, $cols)
+    public function createTable($rows, $cols)
     {
-        echo "<table>";
+
+        echo "<table border=2>";
         echo "<tr>";
 
-        foreach($cols as $col)
-        {
+        foreach ($cols as $col) {
             echo "<th>$col</th>";
         }
         echo "</tr>";
 
-        foreach($rows as $row)
-        {
-            echo "<tr>";
 
-            foreach ($cols as $col) {
-                echo "<td>{$row[$col]}</td>";
-            }
-            echo "</tr>";
+        foreach ($rows as $row) {
+            $rowContent = explode(",", $row);
+            echo "<tr>";
+        foreach ($rowContent as $rowContents){
+
+        echo "<td>$rowContents</td>";
+        }
+        echo "</tr>";
+
         }
         echo "</table>";
     }
 }
-$tblcsv = new csvTable();
-var_dump($tblcsv->csvContent($table, ['id', 'title', 'description']));
+
+$tbl = new Csv($content);
+$tbl->createTable($tbl->table($content), ['no.','Title','Details']);
