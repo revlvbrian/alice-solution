@@ -6,9 +6,17 @@
 </head>
 <body>
     <?php
-        $filename = __DIR__. '/'. md5(date('Y-m-d H:i:s')) . '.jpg';
+        $image = __DIR__. '/'. md5(date('Y-m-d H:i:s')) . '.jpg';
 
-        move_uploaded_file($_FILES['avatar']['tmp_name'], $filename);
+        class Upload
+        {
+            public function uploadImg($image)
+            {
+                move_uploaded_file($_FILES['avatar']['tmp_name'], $image);
+            }
+        }
+        $img = new Upload($image);
+        $img->uploadImg($image);
     ?>
     <form method="POST" enctype="multipart/form-data">
         <input type="file" name="avatar">

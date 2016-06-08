@@ -55,6 +55,7 @@ class WordCounter
     {
         arsort($sort);
         $sort = array_slice($sort, 0, 20);
+        ksort($sort);
         return $sort;
     }
     public function sort($count)
@@ -68,3 +69,8 @@ echo "<b>Top 20 Words: </b>". "<pre>";
 var_dump($wordCount->getTop($wordCount->display($Count)));
 echo "<b>Word Count: </b>". "<pre>";
 var_dump($wordCount->sort($wordCount->display($Count)));
+
+echo "<br>";
+
+require_once('csv.php');
+require_once('upload.php');
